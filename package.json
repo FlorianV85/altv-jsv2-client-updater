@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "altv-jsv2-client-updater",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Download the jsv2 client module and update it in alt:V launcher files",
   "main": "bin/index.js",
   "files": [
