@@ -4,6 +4,7 @@ import chalk from 'chalk';
 import decompress from 'decompress';
 import path from "path";
 
+const githubDownloadURL = `https://github.com/altmp/altv-js-module-v2/releases/latest/download/js-module-v2-windows-client.zip`;
 const configFile = path.resolve('.jsv2-client-updater.json');
 const tempFolderPath = path.resolve('./.temp')
 const tempFile = path.resolve(tempFolderPath, 'temp.zip');
@@ -43,19 +44,7 @@ async function getAltVFolderPath() {
     }
 }
 
-async function getModuleVersion() {
-    const response = await fetch('https://cdn.alt-mp.com/js-module-v2/dev/x64_win32/update.json', {
-        headers: {Accept: "application/json"}
-    });
-
-    const versionFile = await response.json();
-
-    return versionFile.version;
-}
-
-async function downloadClientModuleFiles(version) {
-    const githubDownloadURL = `https://github.com/altmp/altv-js-module-v2/releases/download/dev/${version}/js-module-v2-windows-client.zip`;
-
+async function downloadClientModuleFiles() {
     const response = await fetch(githubDownloadURL);
 
     if (!response.ok) {
@@ -109,15 +98,11 @@ async function update() {
     }
 
     try {
-        const version = await getModuleVersion();
-
-        if (!version) throw new Error('The fetched version is undefined');
-
-        await downloadClientModuleFiles(version);
+        await downloadClientModuleFiles();
         await extractClientModuleFiles();
         await copyFilesToAltVLauncher(altVPath);
 
-        console.log(chalk.green(`JS V2 client module successfully updated to version ${version}`));
+        console.log(chalk.green(`JS V2 client module successfully updated`));
     } catch (e) {
         console.error(e);
     }
