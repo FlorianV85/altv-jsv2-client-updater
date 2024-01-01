@@ -15,6 +15,14 @@
   ],
   "author": "Florian V.",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FlorianV85/altv-jsv2-client-updater.git"
+  },
+  "bugs": {
+    "url": "https://github.com/FlorianV85/altv-jsv2-client-updater/issues"
+  },
+  "homepage": "https://github.com/FlorianV85/altv-jsv2-client-updater#readme",
   "devDependencies": {
     "@types/node": "^20.10.6"
   },
